@@ -38,7 +38,14 @@
               </a>
 
               <div class="property-content">
-                <div class="price mb-2"><span>대여 가능</span></div>
+                <div class="price mb-2">
+                <c:if test="${empty item.rentalid }">
+                <span>대여 가능</span>
+                </c:if>
+                <c:if test="${!empty item.rentalid }">
+                <span style="color:#B40404">대여 불가</span>
+                </c:if>
+                </div>
                 <div>
                   <span class="d-block mb-2 text-black-50"
                     >${item.category }</span

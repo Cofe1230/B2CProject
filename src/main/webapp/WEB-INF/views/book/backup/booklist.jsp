@@ -36,8 +36,6 @@
 	  </c:forEach>
   </div>
 </div>
-
-
 <script>
 
 
