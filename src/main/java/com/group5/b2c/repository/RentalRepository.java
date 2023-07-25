@@ -19,4 +19,6 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 	public List<Rental> findByReturnid(Member member);
 	
 	public List<Rental> findAllByReturndateBeforeAndRentstatus(Date date, String rentstatus);
+	
+	public Rental findByBookid(Book book);
 }

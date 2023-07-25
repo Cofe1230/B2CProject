@@ -7,7 +7,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Untree.co" />
-    <link rel="shortcut icon" href="favicon.png" />
 
     <meta name="description" content="" />
     <meta name="keywords" content="bootstrap, bootstrap5" />
@@ -25,7 +24,7 @@
     <link rel="stylesheet" href="/css/tiny-slider.css" />
     <link rel="stylesheet" href="/css/aos.css" />
     <link rel="stylesheet" href="/css/style.css" />
-
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
@@ -53,7 +52,7 @@
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
               <li><a href="/">Home</a></li>
-              <li class="has-children active">
+              <li class="has-children">
                 <a href="/book/list">책 렌탈</a>
                 <ul class="dropdown">
                   <li><a href="/book/list">책 리스트</a></li>
@@ -70,11 +69,11 @@
               </li>
               <li><a href="services.html">게시판</a></li>
               <sec:authorize access="isAnonymous()">
-              <li><a href="/login">로그인</a></li>
+              <li><a href="/member/login">로그인</a></li>
               <li><a href="/join">회원가입</a></li>
               </sec:authorize>
               <sec:authorize access="isAuthenticated()">
-              <li class="has-children active">
+              <li class="has-children">
                 <a href="/book/list">내 정보</a>
                 <ul class="dropdown">
                 	<li><a href="/book/list">내정보</a></li>	

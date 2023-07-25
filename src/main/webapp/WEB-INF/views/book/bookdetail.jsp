@@ -52,11 +52,24 @@
 							<button type="button" class="btn btn-danger py-2 px-3">대여불가</button>
 						</div>
 					</c:if>
+					<c:if
+						test="${empty book.rentalid and principal.username==book.memberid.username }">
+						<div class="form-group">
+							<button type="button" onclick="updateBook(${book.bookid})" class="btn btn-primary py-2 px-3 mt-2">수정</button>
+							<button type="button" onclick="delBook(${book.bookid})" class="btn btn-primary py-2 px-3 ml-2 mt-2">삭제</button>
+						</div>
+					</c:if>
+					<c:if
+						test="${book.rentalid.rentstatus=='return' and principal.username==book.memberid.username }">
+						<div class="form-group">
+							<button type="button" class="btn btn-primary py-2 px-3 mt-2">재등록</button>
+						</div>
+					</c:if>
 				</sec:authorize>
 				<sec:authorize access="isAnonymous()">
 					<div class="form-group">
 						<button type="button" class="btn btn-primary py-2 px-3"
-							onclick="location.href='/login'">로그인</button>
+							onclick="location.href='/member/login'">로그인</button>
 					</div>
 				</sec:authorize>
 
@@ -65,6 +78,27 @@
 	</div>
 </div>
 <script>
+function delBook(num){
+	if(!confirm('삭제 하겠습니까?')){
+		return false;
+	}
+	$.ajax({
+		type : 'delete',
+		url : '/book/bookdel/'+num
+	})
+	.done(function(){
+		alert('삭제 되었습니다')
+		location.href="/book/list"
+	})
+}
+
+function updateBook(num){
+	if(!confirm('수정 하겠습니까?')){
+		return false;
+	}
+	location.href='/book/bookupdate/'+num
+}
+
 <!-- 대여 요청 버튼? 수정 김명준-->
 $('#rentBook').on('click', function(){
 	$.ajax({

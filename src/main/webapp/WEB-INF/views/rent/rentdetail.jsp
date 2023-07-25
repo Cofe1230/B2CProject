@@ -34,7 +34,7 @@
 	<c:if test="${rental.rentstatus=='request' }">
 	<button type="button" class="btn btn-primary btn-sm" onclick="rentrequest(${rental.rentalid})">대여수락</button>
 	</c:if>
-	<c:if test="${rental.rentid.username == principal.username }">
+	<c:if test="${rental.rentid.username == principal.username and rental.rentstatus=='rent' }">
 	<button type="button" class="btn btn-primary btn-sm" onclick="returnBook(${rental.rentalid})">반납완료</button>
 	</c:if>
 	</div>

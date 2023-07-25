@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import com.group5.b2c.dto.BookFormDTO;
 import com.group5.b2c.model.Book;
 import com.group5.b2c.repository.MemberRepository;
 import com.group5.b2c.service.BookService;
+import com.group5.b2c.service.RentalService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class BookController {
 	private final BookService bookService;
 	private final MemberRepository memberRepository;
+	private final RentalService rentalService;
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("insert")
@@ -61,8 +64,18 @@ public class BookController {
 	public String Detail(@PathVariable long num, Model model) {
 		model.addAttribute("book",bookService.bookdetail(num));
 		Book b = bookService.bookdetail(num);
-		System.out.println(bookService.bookdetail(num).getTitle());
-		System.out.println("username = " + b.getMemberid().getUsername());
 		return "/book/bookdetail";
+	}
+	
+	@DeleteMapping("bookdel/{num}")
+    @ResponseBody
+    public String bookdel(@PathVariable long num) {
+    	bookService.bookdel(num);
+    	return "success";
+    }
+	@GetMapping("bookupdate/{num}")
+	public String bookupdate(@PathVariable long num,Model model) {
+		model.addAttribute("book", bookService.bookdetail(num));
+		return "/book/bookupdate";
 	}
 }

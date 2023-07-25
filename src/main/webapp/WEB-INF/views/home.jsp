@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp"%>
 <div class="hero">
 	<div class="hero-slide">
@@ -19,7 +21,7 @@
 					data-aos="fade-up" data-aos-delay="200">
 					<input type="text" class="form-control px-4" name="keyword"
 						placeholder="Your ZIP code or City. e.g. New York" />
-					<button type="submit" class="btn btn-primary">Search</button>
+					<input type="submit" class="btn btn-primary" value="검색">
 				</form>
 			</div>
 		</div>

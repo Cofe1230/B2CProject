@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.group5.b2c.model.Book;
+import com.group5.b2c.model.Rental;
 import com.group5.b2c.repository.BookRepository;
 import com.group5.b2c.repository.RentalRepository;
 
@@ -77,14 +78,14 @@ public class BookService {
 		bookRepository.save(book);
 	}
 	
-	@Transactional
 	public Book bookdetail(long num) {
 		Book b = bookRepository.findById(num).get();
-		
 		return b;
+	}
 	
-	
-		
+	public void bookdel(long num) {
+		System.out.println("삭제");
+		bookRepository.deleteById(num);
 	}
 	
 }

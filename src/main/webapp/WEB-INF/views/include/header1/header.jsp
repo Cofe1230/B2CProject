@@ -127,7 +127,7 @@ button {
 		</ul>
 		<ul class="navbar-nav">
 			<sec:authorize access="isAnonymous()">
-				<li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+				<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 				<li class="nav-item"><a class="nav-link" href="/join">회원가입</a>
 				</li>
 			</sec:authorize>
