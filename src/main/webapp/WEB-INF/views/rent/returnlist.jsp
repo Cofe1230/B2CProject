@@ -39,7 +39,6 @@
 		책 이름 : ${item.bookid.title }<br/>
 		대여 날짜 : <fmt:formatDate value="${item.rentdate }" pattern="yyyy-MM-dd"/><br/>
 		반납 날짜 : <fmt:formatDate value="${item.returndate }" pattern="yyyy-MM-dd"/><br/>
-	<button type="button" class="btn btn-primary btn-sm" >반납완료</button><br/>
 		</c:if>
 	</c:forEach>
 	<hr/>

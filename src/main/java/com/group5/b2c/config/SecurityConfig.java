@@ -19,6 +19,7 @@ public class SecurityConfig {
 		http.csrf().disable()
 		.authorizeHttpRequests()
 		.antMatchers("/user/*").authenticated()
+		.mvcMatchers("/rent/**").authenticated()
 		.anyRequest()
 		.permitAll()
 		.and()

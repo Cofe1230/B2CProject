@@ -78,4 +78,15 @@ public class BookController {
 		model.addAttribute("book", bookService.bookdetail(num));
 		return "/book/bookupdate";
 	}
+	@PostMapping("bookupdate")
+	public String bookupdate(@Valid BookFormDTO bookFormDTO,BindingResult bindingResult,  @AuthenticationPrincipal PrincipalMember principalMember, HttpSession session,Model model,@RequestParam long bookid) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("book", bookFormDTO);
+			return "/book/bookupdate";
+		}
+		String uploadFolder = session.getServletContext().getRealPath("/") + "\\resource\\img";
+		Book book = Book.createBook(bookFormDTO,principalMember.getMember());
+		bookService.update(book, uploadFolder,bookid);
+		return "redirect:/book/list";
+	}
 }

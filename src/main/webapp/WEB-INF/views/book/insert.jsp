@@ -51,8 +51,8 @@
 
 			<div class="form-group mt-5">
 				<label for="category">카테고리 : </label> <select name='category'>
-					<option value='domestic book'>국내도서</option>
-					<option value='foreign book'>해외도서</option>
+					<option value='국내도서'>국내도서</option>
+					<option value='해외도서'>해외도서</option>
 				</select>
 			</div>
 
@@ -73,7 +73,7 @@
 					class="form-control" id="upload" name="upload">
 			</div>
 			<div class="form-group mt-2">
-			<button type="submit" class="btn btn-dark py-2 px-3" id="insertBtn">글쓰기</button>
+			<button type="submit" class="btn btn-dark py-2 px-3" id="insertBtn">등록하기</button>
 			</div>
 		</form>
 	</div>

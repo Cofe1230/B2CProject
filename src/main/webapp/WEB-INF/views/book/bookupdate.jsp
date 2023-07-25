@@ -26,6 +26,7 @@
 		<form action="/book/bookupdate" id="frm" method="post"
 			enctype="multipart/form-data">
 			<div class="form-group mt-2">
+			<input type="hidden" name="bookid" value="${book.bookid }">
 				<label for="title">책제목 : </label> <input type="text"
 					class="form-control" id="title" placeholder="책 제목을 입력해주세요"
 					name="title" value="${book.title }">
@@ -50,9 +51,9 @@
 			</spring:hasBindErrors>
 
 			<div class="form-group mt-5">
-				<label for="category">카테고리 : </label> <select name='category'>
-					<option value='domestic book'>국내도서</option>
-					<option value='foreign book'>해외도서</option>
+				<label for="category">카테고리 : </label> <select name='category' id='category'>
+					<option value='국내도서'>국내도서</option>
+					<option value='해외도서'>해외도서</option>
 				</select>
 			</div>
 
@@ -78,5 +79,11 @@
 		</form>
 	</div>
 </div>
-
+<script>
+$('#category option').each(function(){
+	if($(this).val()=='${book.category}'){
+		$(this).prop("selected",true);
+	}
+})
+</script>
 <%@ include file="../include/footer.jsp"%>

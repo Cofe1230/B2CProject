@@ -87,6 +87,29 @@ public class BookService {
 		System.out.println("삭제");
 		bookRepository.deleteById(num);
 	}
+	@Transactional
+	public void update(Book book, String uploadFolder,long bookid) {
+		UUID uuid = UUID.randomUUID();
+		MultipartFile f = book.getUpload();
+		String uploadFileName = "";
+		
+		if(!f.isEmpty()) {
+			uploadFileName = uuid.toString() + "_" + f.getOriginalFilename();
+			File saveFile = new File(uploadFolder, uploadFileName);
+			try {
+				f.transferTo(saveFile);
+				book.setImg(uploadFileName);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		Book updatebook = bookRepository.findById(bookid).get();
+		updatebook.setAuthor(book.getAuthor());
+		updatebook.setCategory(book.getCategory());
+		updatebook.setContent(book.getContent());
+		updatebook.setImg(book.getImg());
+		updatebook.setTitle(book.getTitle());
+	}
 	
 }
 	

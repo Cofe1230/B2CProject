@@ -30,8 +30,8 @@
 			<div class="form-group">
 				<label for="category">카테고리 : </label>			
 				<select name='category'>
- 					<option value='domestic book'>국내도서</option>
- 					<option value='foreign book'>해외도서</option>
+ 					<option value='국내도서'>국내도서</option>
+ 					<option value='해외도서'>해외도서</option>
 				</select>
 			</div>
 			
