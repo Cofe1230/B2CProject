@@ -7,14 +7,14 @@
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-9 text-center mt-5">
-				<h1 class="heading" data-aos="fade-up">책 등록</h1>
+				<h1 class="heading" data-aos="fade-up">빌린책</h1>
 
 				<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
 					<ol class="breadcrumb text-center justify-content-center">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/book/list">대여 리스트</a></li>
+						<li class="breadcrumb-item"><a href="/member/memberview/${principal.username }">내 정보</a></li>
 						<li class="breadcrumb-item active text-white-50"
-							aria-current="page">책 등록</li>
+							aria-current="page">빌린책</li>
 					</ol>
 				</nav>
 			</div>

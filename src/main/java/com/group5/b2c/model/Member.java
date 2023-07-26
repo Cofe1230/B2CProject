@@ -33,6 +33,7 @@ public class Member {
 	private String address;
 	private String email;
 	private String phone;
+	private String location;
 	private String role;
 	
 	
@@ -45,7 +46,8 @@ public class Member {
 		member.setAddress(memberDTO.getAddress());
 		member.setEmail(memberDTO.getEmail());
 		member.setPhone(memberDTO.getPhone());
-		member.setRole("ROLE_ADMIN");
+		member.setLocation(memberDTO.getLocation());
+		member.setRole("ROLE_USER");
 		return member;
 	}
 }

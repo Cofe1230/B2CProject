@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/css/tiny-slider.css" />
 <link rel="stylesheet" href="/css/aos.css" />
 <link rel="stylesheet" href="/css/style.css" />
-
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Property &mdash; Free Bootstrap 5 Website Template by
 	Untree.co</title>
 

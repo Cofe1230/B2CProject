@@ -20,6 +20,7 @@ public class SecurityConfig {
 		.authorizeHttpRequests()
 		.antMatchers("/user/*").authenticated()
 		.mvcMatchers("/rent/**").authenticated()
+		.mvcMatchers("/admin/**").hasRole("ADMIN")
 		.anyRequest()
 		.permitAll()
 		.and()

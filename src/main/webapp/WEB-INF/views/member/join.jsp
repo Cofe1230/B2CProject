@@ -11,14 +11,13 @@
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-9 text-center mt-5">
-				<h1 class="heading" data-aos="fade-up"></h1>
+				<h1 class="heading" data-aos="fade-up">회원 가입</h1>
 
 				<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
 					<ol class="breadcrumb text-center justify-content-center">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/book/list">대여 리스트</a></li>
 						<li class="breadcrumb-item active text-white-50"
-							aria-current="page">책 등록</li>
+							aria-current="page">회원가입</li>
 					</ol>
 				</nav>
 			</div>
@@ -113,6 +112,15 @@
 						</div>
 					</c:if>
 				</spring:hasBindErrors>
+			</div>
+			<div class="form-group mt-5">
+				<label for="location">지역 : </label> <select name='location'>
+					<option value='해운대구'>해운대구</option>
+					<option value='동래구'>동래구</option>
+					<option value='연제구'>연제구</option>
+					<option value='수영구'>수영구</option>
+					<option value='부산진구'>부산진구</option>
+				</select>
 			</div>
 			<div class="form-group mt-5">
 				<button type="submit" class="btn btn-primary" id="btnJoin">회원가입</button>

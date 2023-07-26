@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
     private final BoardService boardService;
     
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("insert")
     public String insert() {
         return "/board/insert";

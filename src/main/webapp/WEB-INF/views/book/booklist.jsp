@@ -50,6 +50,7 @@
 								</div>
 								<div>
 									<span class="d-block mb-2 text-black-50">${item.category }</span>
+									<span class="d-block mb-2 text-black-50">${item.memberid.location }</span>
 									<span class="city d-block mb-3">${item.title }</span>
 
 									<div class="specs d-flex mb-4">

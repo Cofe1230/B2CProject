@@ -3,6 +3,7 @@ package com.group5.b2c.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,11 +68,11 @@ public class MemberController {
 		model.addAttribute("member",memberService.list());
 		return "/member/memberlist"; 
 	}
-	
 	@GetMapping("/member/memberview/{username}")
 	public String view(@PathVariable String username, Model model) {		
-		System.out.println("get memberview");
-		model.addAttribute("member",memberService.view(username));
+		Member member = memberService.view(username);
+		model.addAttribute("member",member);
+		System.out.println(member);
 		return "/member/memberview"; 
 	}
 	
