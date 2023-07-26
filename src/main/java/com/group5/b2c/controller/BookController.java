@@ -3,6 +3,10 @@ package com.group5.b2c.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.group5.b2c.config.auth.PrincipalMember;
 import com.group5.b2c.dto.BookFormDTO;
+import com.group5.b2c.dto.PageVO;
 import com.group5.b2c.model.Book;
 import com.group5.b2c.repository.MemberRepository;
 import com.group5.b2c.service.BookService;
@@ -54,12 +59,19 @@ public class BookController {
 	
 	
 	@GetMapping("list")
-	public String list(Model model, @RequestParam(defaultValue = "") String keyword) {
-		model.addAttribute("lists", bookService.list(keyword));
+	public String list(Model model, @RequestParam(defaultValue = "") String keyword,@PageableDefault(size=9, sort="bookid", direction=Direction.DESC)Pageable pageable) {
+		int currentPage = pageable.getPageNumber()+1;
+		int count = (int)bookService.getCount(keyword);
+		int pageSize=9;
+		int pageStart=(currentPage-1)*pageSize;
+		PageVO page = new PageVO(count, pageSize, currentPage);
+		Page<Book> list = bookService.list(keyword,pageable);
+		model.addAttribute("lists", list);
+		model.addAttribute("count",count);
+		model.addAttribute("p", page);
+		model.addAttribute("keyword", keyword);
 		return "/book/booklist";
-	
-	
-}
+	}
 	@GetMapping ("bookdetail/{num}")
 	public String Detail(@PathVariable long num, Model model) {
 		model.addAttribute("book",bookService.bookdetail(num));

@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -26,6 +30,8 @@ public class Comment {
 	private String content;
 	@JsonFormat(shape=Shape.STRING,
 			pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date regdate;
 	@ManyToOne
 	@JoinColumn(name = "bnum")

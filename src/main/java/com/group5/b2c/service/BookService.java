@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,12 +52,12 @@ public class BookService {
 	}
 	
 	
-	public List<Book> list(String keyword){
-		List<Book> list = null;
+	public Page<Book> list(String keyword, Pageable pageable){
+		Page<Book> list = null;
 		if(keyword.equals("")) {
-			list = bookRepository.findAll();
+			list = bookRepository.findAll(pageable);
 		}else {
-			list=bookRepository.findByTitleContainingOrAuthorContainingOrCategoryContaining(keyword, keyword, keyword);
+			list=bookRepository.findByTitleContainingOrAuthorContainingOrCategoryContaining(keyword, keyword, keyword, pageable);
 		}
 		return list;
 	}
@@ -109,6 +111,16 @@ public class BookService {
 		updatebook.setContent(book.getContent());
 		updatebook.setImg(book.getImg());
 		updatebook.setTitle(book.getTitle());
+	}
+	
+	public long getCount(String keyword) {
+		long count = 0;
+		if(keyword.equals("")) {
+			count = bookRepository.count();
+		}else {
+			count=bookRepository.countByTitleContainingOrAuthorContainingOrCategoryContaining(keyword, keyword, keyword);
+		}
+		return count;
 	}
 	
 }

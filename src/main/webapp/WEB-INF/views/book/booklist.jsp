@@ -28,7 +28,7 @@
 <div class="section section-properties">
 	<div class="container">
 		<div class="row">
-			<c:forEach items="${lists }" var="item">
+			<c:forEach items="${lists.content }" var="item">
         <c:if test="${item.rentalid.rentstatus!='return' }">
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 						<div class="property-item mb-30">
@@ -69,11 +69,26 @@
 			</c:forEach>
 		</div>
 		<div class="row align-items-center py-5">
-			<div class="col-lg-3">Pagination (1 of 10)</div>
+		<div class="col-lg-3"></div>
 			<div class="col-lg-6 text-center">
 				<div class="custom-pagination">
-					<a href="#">1</a> <a href="#" class="active">2</a> <a href="#">3</a>
-					<a href="#">4</a> <a href="#">5</a>
+				<c:if test="${p.startPage>p.blockPage }">
+				<a href="?page=${p.startPage-p.blockPage-1 }&keyword=${keyword}">이전</a>
+				</c:if>
+				
+				<c:forEach begin="${p.startPage }" end="${p.endPage }" var="i">
+				<c:if test="${p.currentPage == i }">
+					<a class="active"
+						href="?page=${i-1 }&keyword=${keyword}">${i }</a>
+				</c:if>
+				<c:if test="${p.currentPage !=i }">
+					<a 
+						href="?page=${i-1 }&keyword=${keyword}">${i }</a>
+				</c:if>
+			</c:forEach>
+			<c:if test="${p.endPage<p.totPage }">
+				<a href="?page=${p.endPage }&keyword=${keyword}">다음</a>
+				</c:if>
 				</div>
 			</div>
 		</div>

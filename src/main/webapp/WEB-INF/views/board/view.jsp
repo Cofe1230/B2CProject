@@ -1,122 +1,165 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<div class="hero page-inner overlay"
+	style="background-image: url('/images/bg_main.png')">
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-9 text-center mt-5">
+				<h1 class="heading" data-aos="fade-up">책 등록</h1>
 
-<br/><br/><br/><br/><br/>
-<div class="container mt-3">
-	<h3>${board.member.username }의 글보기</h3>
-	<div class="form-group">
-		<label for="num">글번호:</label> <input type="text" class="form-control"
-			id="num" name="num" value="${board.boardid }" readonly="readonly">
-	</div>
-	<br/>
-	<div class="form-group">
-		<label for="title">제목:</label> <input type="text" class="form-control"
-			id="title" name="title" value="${board.title }" readonly="readonly">
-	</div>
-	<br/>
-	<div class="form-group">
-		<label for="writer">글쓴이:</label> <input type="text" class="form-control"
-			id="writer" name="writer" value="${board.member.username }"
-			readonly="readonly">
-	</div>
-	<br/>
-	<div class="form-group">
-		<label for="content">내용</label>
-		<textarea class="form-control" rows="5" id="content" name="content">${board.content }</textarea>
-	</div>
-    <br/>
-		<div class="form-group text-right">
-			<button type="button" class="btn btn-secondary btn-sm" id="btnUpdate">수정</button>
-			<button type="button" class="btn btn-danger btn-sm" id="btnDelete">삭제</button>
+				<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+					<ol class="breadcrumb text-center justify-content-center">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/book/list">대여 리스트</a></li>
+						<li class="breadcrumb-item active text-white-50"
+							aria-current="page">책 등록</li>
+					</ol>
+				</nav>
+			</div>
 		</div>
-		
-	<div align="center">
-		<textarea rows="3" cols="50" id="msg"></textarea>
-		<button type="button" class="btn btn-secondary btn-sm" id="btnComment">댓글쓰기</button>
 	</div>
-	<div id="replyResult"></div>
 </div>
 
+<div class="section">
+	<div class="container">
+		<input type="hidden" name="boardid" value="${board.boardid }">
+		<h2>상세 보기</h2>
+		<table class="table table-hover">
+			<tr>
+				<td>글번호</td>
+				<td>${board.boardid }</td>
+				<td>조회수</td>
+				<td>${board.hitcount }</td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td>${board.member.username }</td>
+				<td>작성일</td>
+				<td><fmt:formatDate value="${board.regdate }"
+						pattern="yyyy-MM-dd" /></td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td colspan="3">${board.title }</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td colspan="3">${board.content }</td>
+			</tr>
+		</table>
+		<br>
+		<c:if test="${principal.username==board.member.username }">
+			<div class="form-group text-right">
+				<button class="btn btn-primary" id="btnUpdate">수정</button>
+				<button class="btn btn-secondary" id="btnDelete">삭제</button>
+			</div>
+		</c:if>
+		<div class="form-group">
+			<label for="msg">msg</label>
+			<textarea class="form-control" rows="3" cols="50" id="msg"></textarea>
+			<br>
+			<button class="btn btn-success btn-sm" id="commentBtn">Comment
+				Write</button>
+			<hr />
+			<div id="replyResult"></div>
+		</div>
+	</div>
+</div>
 <script>
-
-//수정폼
-$('#btnUpdate').click(function() {
-    if (confirm("정말 수정할까요?"))
-        location.href = '/board/update/' +'${board.boardid}'
-})
-
-$("#btnDelete").click(function() {
-    if (!confirm('정말 삭제할까요'))
-        return;
-    $.ajax({
-        type: 'DELETE',
-        url: '/board/delete/' +'${board.boardid}'
-    }).done(function(resp) {
-        alert("삭제 성공")
-        location.href = "/board/list"
-    }).fail(function(e) {
-        alert("삭제 실패")
-    })
-})
-
-$('#btnUpdate').click(function(){
-	if(confirm("정말 수정할까요?"))
-	location.href='/board/update/'+'${board.boardid}'
-})
-	
-
-$("#btnDelete").click(function(){
-	if(!confirm('정말 삭제할까요'))
-		return;
+var init=function(){
 	$.ajax({
-		type:'DELETE',
-		url : '/board/delete/'+'${board.boardid}'
-	}).done(function(resp){
-		alert("삭제 성공")
-		location.href="/board/list"
+		type:'get',
+		url:'/reply/list/${board.boardid}'
+	})
+	.done(function(resp){
+		console.log(resp)
+		let str="<table class='table table-hover'><tr><th>이름</th><th>내용</th><th>날짜</th><th></th></tr>";
+		$.each(resp,function(key,value){
+			str+="<tr>"
+			str+="<td>"+value.member.username+"</td>"
+			str+="<td>"+value.content+"</td>"
+			str+="<td>"+value.regdate+"</td>"
+			if("${principal.username}"==value.member.username){
+				str+="<td><a href='javascript:fdel("+value.cnum+")'>삭제</a></td>"	
+			}else{
+				str+="<td></td>"
+			}
+			str+="</tr>"
+		})
+		str+="</table>"
+		$('#replyResult').html(str);
+	})
+}
+function fdel(num){
+	if(!confirm('삭제할까요?')){
+		return false;
+	}
+	$.ajax({
+		type:'delete',
+		url:'/reply/delete/'+num,
+	})
+	.done(function(resp){
+		alert('성공')
+		init();
 	})
 	.fail(function(e){
-		alert("삭제 실패")
+		alert('실패' + e)
 	})
+}
 
+$('#commentBtn').click(function(){
+	if(${empty principal.member}){
+		alert('로그인 해주세요')
+		location.href="/member/login";
+		return;
+	}
+	if($('#msg').val()==""){
+		alert('댓글을 적으세요')
+		return;
+	}
+	let data={
+			"content" : $('#msg').val()
+	};
+	$.ajax({
+		type:'post',
+		url:'/reply/insert/'+${board.boardid },
+		contentType:'application/json; charset=utf-8',
+		data:JSON.stringify(data)
+	})
+	.done(function(resp,status){
+		alert('댓글추가 성공')
+		init();
+	})
+	.fail(function(){
+		alert('댓글추가 실패')
+	})
 })
 
 
-$("#btnComment").click(function() {
-    // 사용자가 댓글을 입력하지 않았을 경우 경고창을 띄웁니다.
-    if ($("#msg").val() === "") {
-        alert("댓글을 작성하세요");
-        return;
-    }
+$('#btnDelete').click(function(){
+	if(!confirm('삭제하시겠습니까?')){
+		return false;
+	}
+	$.ajax({
+		type:'delete',
+		url:'/board/delete/${board.boardid}',
+		success:function(resp){
+			if(resp=='success'){
+				alert("삭제되었습니다.")
+				location.href='/board/list';
+			}
+		}
+	})
+})
+$('#btnUpdate').click(function(){
+	if(!confirm('수정하겠습니까?')){
+		return false;
+	}
+	location.href='/board/update/${board.boardid}';
+})
 
-    // 댓글 데이터를 생성합니다.
-    let data = {
-        "bnum": $("#num").val(),
-        "content": $("#msg").val()
-    };
-
-    // 서버로 댓글 데이터를 전송합니다.
-    $.ajax({
-        type: 'POST',
-        url: '/comment/add/' + $("#num").val(), // URL에 게시글 번호를 포함합니다.
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(data),
-        success: function (resp) {
-            // 댓글 추가 성공 시, 초기화 함수를 호출하여 댓글 목록 업데이트합니다.
-            init();
-            // 댓글 작성을 완료했으므로 입력창을 초기화합니다.
-            $("#msg").val("");
-            alert(resp);
-        },
-        error: function () {
-            alert("댓글 추가 실패");
-        }
-    });
-});
-
-    // 초기화 시 댓글 목록 조회
-    init();
-
- </script>
+init();
+</script>
+<%@ include file="../include/footer.jsp"%>
