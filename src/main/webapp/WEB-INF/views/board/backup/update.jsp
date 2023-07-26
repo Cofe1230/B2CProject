@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<br/><br/><br/><br/><br/>
 <div class="container mt-3">
 	<h3>${board.member.username }의글보기</h3>
 	<div class="form-group">
@@ -25,13 +23,11 @@
 			id="writer" name="writer" value="${board.member.username }"
 			readonly="readonly">
 	</div>
-	<br/>
 	<div class="form-group">
 		<label for="content">내용</label>
 		<textarea class="form-control" rows="5" id="content" name="content">
 		${board.content }</textarea>
 	</div>
-	<br/>
 	<spring:hasBindErrors name="boardFormDTO">
 		<c:if test="${errors.hasFieldErrors('content') }">
 			<div class="alert alert-danger">
@@ -39,7 +35,8 @@
 			</div>
 		</c:if>
 	</spring:hasBindErrors>
-	<br/>
+	
+	
 		<div class="form-group text-right">
 			<button type="button" class="btn btn-secondary btn-sm" id="btnUpdate">수정</button>
 			<button type="button" class="btn btn-danger btn-sm" id="btnDelete">삭제</button>
