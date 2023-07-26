@@ -26,10 +26,10 @@ public class SecurityConfig {
 		.formLogin()
 		.loginPage("/member/login")
 		.defaultSuccessUrl("/")
-		.failureUrl("/login/error")
+		.failureUrl("/member/login/error")
 		.and()
 		.logout()
-		.logoutUrl("/logout")
+		.logoutUrl("/member/logout")
 		.logoutSuccessUrl("/")
 		.invalidateHttpSession(true);
 		

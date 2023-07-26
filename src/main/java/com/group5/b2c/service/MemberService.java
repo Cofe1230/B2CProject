@@ -23,9 +23,9 @@ public class MemberService {
 	// private MemberRepository memberRepository;
 
 	private final MemberRepository memberRepository;
-	private final BCryptPasswordEncoder encoder;
 	// 추가
 	public void insert(Member member) {
+		System.out.println("MemberService insert");
 		validateMember(member);
 		memberRepository.save(member);
 	}
@@ -36,7 +36,7 @@ public class MemberService {
 		System.out.println("memberservice update");
 		Member m = memberRepository.findByUsername(member.getUsername());		
 		m.setUsername(member.getUsername());
-		m.setPassword(encoder.encode(member.getPassword()));
+		m.setPassword(member.getPassword());
 		m.setName(member.getName());
 		m.setAddress(member.getAddress());
 		m.setEmail(member.getEmail());

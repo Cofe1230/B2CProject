@@ -28,14 +28,14 @@ public class MemberController {
 	private final BCryptPasswordEncoder encoder;
 
 	
-	@GetMapping("/join")
+	@GetMapping("/member/join")
 	public String join() {
 		return "/member/join";
 	}	
 
-	@PostMapping("/join")
+	@PostMapping("/member/join")
 	public String join(@Valid MemberDTO memberdto, BindingResult bindingResult, Model model) {
-		
+		System.out.println("/member/join");
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("member", memberdto);
 			return "/member/join";
@@ -48,26 +48,27 @@ public class MemberController {
             model.addAttribute("member", memberdto);
             return "/member/join";
         }
-		return "redirect:/login"; 
+		return "redirect:/member/login"; 
 	}
 	
 	@GetMapping("/member/login")
 	public String login() {
 		return "/member/login";
 	}
-	@GetMapping("/login/error")
+	@GetMapping("/member/login/error")
 	public String loginError(Model model) {
 		model.addAttribute("loginErrorMsg", "아이디나 비밀번호를 확인해주세요");
 		return "/member/login";
 	}
 	
-	@GetMapping("/memberlist")
+	@GetMapping("/member/memberlist")
 	public String list(Model model) {
 		model.addAttribute("count",memberService.getCount());
 		model.addAttribute("member",memberService.list());
 		return "/member/memberlist"; 
 	}
-	@GetMapping("/memberview/{username}")
+	
+	@GetMapping("/member/memberview/{username}")
 	public String view(@PathVariable String username, Model model) {		
 		System.out.println("get memberview");
 		model.addAttribute("member",memberService.view(username));
@@ -75,18 +76,13 @@ public class MemberController {
 	}
 	
 
-	@PostMapping("/memberupdate")
+	@PostMapping("/member/memberupdate")
 	public String update(@Valid MemberDTO memberdto, 
 			BindingResult bindingResult, Model model) {
 		System.out.println("post update");
 		if(bindingResult.hasErrors()) {
 			System.out.println("post update error");
-//			System.out.println(memberdto.getUsername()+" / "+
-//					memberdto.getAddress()+" / "+
-//					memberdto.getEmail()+" / "+
-//					memberdto.getName()+" / "+
-//					memberdto.getPassword()+" / "+
-//					memberdto.getPhone()+" / ");
+			
 			model.addAttribute("member", memberdto);
 			return "/member/memberview";
 		}
@@ -102,7 +98,7 @@ public class MemberController {
 	}
 
 
-	@DeleteMapping("/memberdelete/{username}")
+	@DeleteMapping("/member/memberdelete/{username}")
 	@ResponseBody
 	public String delete(@PathVariable String username) {
 		System.out.println("delete 1:"+username);

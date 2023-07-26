@@ -86,16 +86,16 @@
 						<!--   <li><a href="about.html">About</a></li>-->
 
 						<sec:authorize access="isAnonymous()">
-							<li><a href="member/login">로그인</a></li>
-							<li><a href="/join">회원가입</a></li>
+							<li><a href="/member/login">로그인</a></li>
+							<li><a href="/member/join">회원가입</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-							<li class="has-children"><a href="/book/list">내 정보</a>
+							<li class="has-children"><a href="/member/memberview/${principal.member.username }">마이페이지</a>
 								<ul class="dropdown">
-									<li><a href="/book/list">내정보</a></li>
+									<li><a href="/member/memberview/${principal.member.username }">회원정보</a></li>
 									<li><a href="/rent/list">빌려준책</a></li>
 									<li><a href="/rent/returnlist">빌린책</a></li>
-									<li><a href="/logout">로그아웃</a></li>
+									<li><a href="/member/logout">로그아웃</a></li>
 								</ul></li>
 						</sec:authorize>
 					</ul>
