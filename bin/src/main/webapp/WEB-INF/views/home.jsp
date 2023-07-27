@@ -21,7 +21,7 @@
 					class="narrow-w form-search d-flex align-items-stretch mb-auto"
 					data-aos="fade-up" data-aos-delay="200">
 					<input type="text" class="form-control px-4" name="keyword"
-						placeholder="제목/저자/국내or해외" />
+						placeholder="제목/저자/카테고리" />
 					<input type="submit" class="btn btn-primary" value="검색">
 				</form> 
 			</div>

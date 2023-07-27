@@ -51,14 +51,19 @@
 
 			<div class="form-group mt-5">
 				<label for="category">카테고리 : </label> <select name='category'>
-					<option value='국내도서'>국내도서</option>
-					<option value='해외도서'>해외도서</option>
+					<option value='취미	'>취미</option>
+					<option value='경제경영'>경제경영</option>
+					<option value='고전'>고전</option>
+					<option value='만화'>만화</option>
+					<option value='소설'>소설</option>
+					<option value='어린이'>어린이</option>
+					<option value='여행'>여행</option>
 				</select>
 			</div>
-
+			
 			<div class="form-group mt-5">
 				<label for="content">내용:</label>
-				<textarea class="form-control" rows="5" id="content" name="content"></textarea>
+				<textarea class="form-control" rows="5" id="content" name="content">${principal.member.address }</textarea>
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
 				<c:if test="${errors.hasFieldErrors('content') }">

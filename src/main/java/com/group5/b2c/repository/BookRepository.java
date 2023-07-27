@@ -12,6 +12,8 @@ import com.group5.b2c.model.Member;
 public interface BookRepository extends JpaRepository<Book, Long> {
 	List<Book> findByMemberid(Member member);
 	Page<Book> findByTitleContainingOrAuthorContainingOrCategoryContaining(String title, String author, String category,Pageable pageable);
+	Page<Book> findByLocation(String location,Pageable pageable);
 	long countByTitleContainingOrAuthorContainingOrCategoryContaining(String title, String author, String category);
+	long countByLocation(String location);
 	
 }

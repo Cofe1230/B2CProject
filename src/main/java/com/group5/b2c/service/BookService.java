@@ -25,14 +25,6 @@ public class BookService {
 	private final BookRepository bookRepository;
 	private final RentalRepository rentalRepository;
 	
-	/*public void insert(Book book,Member member) {
-		Rental rental = new Rental();
-		rental.setRentid(member);
-		rental.setBookid(book);
-		bookRepository.save(book);
-		rentalRepository.save(rental);
-	}
-	*/
 	public void insert(Book book, String uploadFolder) {
 		UUID uuid = UUID.randomUUID();
 		MultipartFile f = book.getUpload();
@@ -52,9 +44,11 @@ public class BookService {
 	}
 	
 	
-	public Page<Book> list(String keyword, Pageable pageable){
+	public Page<Book> list(String keyword, Pageable pageable, String location){
 		Page<Book> list = null;
-		if(keyword.equals("")) {
+		if(!location.equals("")) {
+			list=bookRepository.findByLocation(location,pageable);
+		}else if(keyword.equals("")) {
 			list = bookRepository.findAll(pageable);
 		}else {
 			list=bookRepository.findByTitleContainingOrAuthorContainingOrCategoryContaining(keyword, keyword, keyword, pageable);
@@ -113,9 +107,11 @@ public class BookService {
 		updatebook.setTitle(book.getTitle());
 	}
 	
-	public long getCount(String keyword) {
+	public long getCount(String keyword,String location) {
 		long count = 0;
-		if(keyword.equals("")) {
+		if(!location.equals("")) {
+			count=bookRepository.countByLocation(location);
+		}else if(keyword.equals("")) {
 			count = bookRepository.count();
 		}else {
 			count=bookRepository.countByTitleContainingOrAuthorContainingOrCategoryContaining(keyword, keyword, keyword);

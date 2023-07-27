@@ -59,13 +59,13 @@ public class BookController {
 	
 	
 	@GetMapping("list")
-	public String list(Model model, @RequestParam(defaultValue = "") String keyword,@PageableDefault(size=9, sort="bookid", direction=Direction.DESC)Pageable pageable) {
+	public String list(Model model, @RequestParam(defaultValue = "") String keyword,@RequestParam(defaultValue = "") String location,@PageableDefault(size=9, sort="bookid", direction=Direction.DESC)Pageable pageable) {
 		int currentPage = pageable.getPageNumber()+1;
-		int count = (int)bookService.getCount(keyword);
+		int count = (int)bookService.getCount(keyword,location);
 		int pageSize=9;
 		int pageStart=(currentPage-1)*pageSize;
 		PageVO page = new PageVO(count, pageSize, currentPage);
-		Page<Book> list = bookService.list(keyword,pageable);
+		Page<Book> list = bookService.list(keyword,pageable,location);
 		model.addAttribute("lists", list);
 		model.addAttribute("count",count);
 		model.addAttribute("p", page);

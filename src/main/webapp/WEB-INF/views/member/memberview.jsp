@@ -97,13 +97,13 @@
 				</spring:hasBindErrors>
 			</div>
 			<div class="form-group mt-5">
-				label for="location">지역 : </label> <select name='location' id='location'>
+				<label for="location">지역 : </label> <select name='location' id='location'>
 					<option value='해운대구'>해운대구</option>
 					<option value='동래구'>동래구</option>
 					<option value='연제구'>연제구</option>
 					<option value='수영구'>수영구</option>
 					<option value='부산진구'>부산진구</option>
-				</select><
+				</select>
 			</div>
 			<c:if test="${member.username ==principal.member.username}">
 				<div class="form-group text-right mt-5">

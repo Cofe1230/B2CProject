@@ -37,6 +37,7 @@ public class Book {//대여 책 관련 정보
 	private String author;
 	private String content;
 	private String category;
+	private String location;
 	private String img;
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -58,6 +59,7 @@ public class Book {//대여 책 관련 정보
 		book.setTitle(bookFormDTO.getTitle());
 		book.setUpload(bookFormDTO.getUpload());
 		book.setMemberid(member);
+		book.setLocation(member.getLocation());
 		return book;
 	}
 

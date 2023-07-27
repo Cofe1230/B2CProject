@@ -26,8 +26,7 @@
 <link rel="stylesheet" href="/css/aos.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>Property &mdash; Free Bootstrap 5 Website Template by
-	Untree.co</title>
+<title>B2C project</title>
 
 
 </head>
@@ -62,12 +61,6 @@
 								<li><a href="/book/list">책 리스트</a></li>
 								<li><a href="/book/insert">책 등록하기</a></li>
 
-								<li class="has-children"><a href="#">Dropdown</a>
-									<ul class="dropdown">
-										<li><a href="#">Sub Menu One</a></li>
-										<li><a href="#">Sub Menu Two</a></li>
-										<li><a href="#">Sub Menu Three</a></li>
-									</ul></li>
 							</ul></li>
 
 

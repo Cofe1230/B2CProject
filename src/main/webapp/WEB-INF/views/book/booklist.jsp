@@ -27,6 +27,9 @@
 
 <div class="section section-properties">
 	<div class="container">
+	<div class="row">
+		<a href="?location=해운대구">해운대구</a>
+	</div>
 		<div class="row">
 			<c:forEach items="${lists.content }" var="item">
         <c:if test="${item.rentalid.rentstatus!='return' }">

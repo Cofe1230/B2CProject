@@ -35,6 +35,7 @@
 			<div class="col-lg-4">
 				<h2 class="heading text-primary">${book.title }</h2>
 				<p class="meta">${book.category }</p>
+				<p class="meta">${book.memberid.location }</p>
 				<p class="text-black-50">
 					<b>${book.content }</b>
 				</p>

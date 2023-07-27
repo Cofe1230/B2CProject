@@ -63,7 +63,7 @@
 			
 			<div class="form-group mt-5">
 				<label for="content">내용:</label>
-				<textarea class="form-control" rows="5" id="content" name="content">${principal.member.address }</textarea>
+				<textarea class="form-control" rows="5" id="content" name="content"></textarea>
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
 				<c:if test="${errors.hasFieldErrors('content') }">

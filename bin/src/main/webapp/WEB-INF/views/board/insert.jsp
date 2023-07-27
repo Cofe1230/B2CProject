@@ -23,44 +23,41 @@
 
 <div class="section">
 	<div class="container mt-3">
-	<form action="/board/insert" method="post">
-		<div class="col-6 mb-3">
-			<label for="title">제목:</label> <input type="text"
-				class="form-control" id="title" placeholder="Enter title"
-				name="title">
-			<spring:hasBindErrors name="boardFormDTO">
-				<c:if test="${errors.hasFieldErrors('title') }">
-					<div class="alert alert-danger">
-						${errors.getFieldError( 'title' ).defaultMessage }
-					</div>
-				</c:if>
-			</spring:hasBindErrors>
-		</div>
-	
-		<div class="col-6 mb-3">
-			<label for="writer">작성자:</label> <input type="text"
-				class="form-control" id="writer" placeholder="Enter writer"
-				name="writer" readonly="readonly" value="${principal.username }">
-		</div>
+		<form action="/board/insert" method="post">
+			<div class="col-6 mb-3">
+				<label for="title">제목:</label> <input type="text"
+					class="form-control" id="title" placeholder="Enter title"
+					name="title">
+				<spring:hasBindErrors name="boardFormDTO">
+					<c:if test="${errors.hasFieldErrors('title') }">
+						<div class="alert alert-danger">${errors.getFieldError( 'title' ).defaultMessage }
+						</div>
+					</c:if>
+				</spring:hasBindErrors>
+			</div>
+			<div class="col-6 mb-3">
+				<label for="writer">작성자:</label> <input type="text"
+					class="form-control" id="writer" placeholder="Enter writer"
+					name="writer" readonly="readonly" value="${principal.username }">
+			</div>
 
-		<div class="col-6 mb-3">
-			<label for="content">내용:</label>
-			<textarea class="form-control" rows="5" id="content" name="content"></textarea>
-			<spring:hasBindErrors name="boardFormDTO">
-				<c:if test="${errors.hasFieldErrors('content') }">
-					<div class="alert alert-danger">
-						${errors.getFieldError( 'content' ).defaultMessage }
-					</div>
-				</c:if>
-			</spring:hasBindErrors>
-		</div>
+			<div class="col-6 mb-3">
+				<label for="content">내용:</label>
+				<textarea class="form-control" rows="5" id="content" name="content"></textarea>
+				<spring:hasBindErrors name="boardFormDTO">
+					<c:if test="${errors.hasFieldErrors('content') }">
+						<div class="alert alert-danger">${errors.getFieldError( 'content' ).defaultMessage }
+						</div>
+					</c:if>
+				</spring:hasBindErrors>
+			</div>
 
-		<div class="form-group text-right mb-3">
-			<button type="submit" class="btn btn-dark py-2 px-3" id="insertBtn">등록하기</button>
-		</div>
+			<div class="form-group text-right mb-3">
+				<button type="submit" class="btn btn-dark py-2 px-3" id="insertBtn">등록하기</button>
+			</div>
 
-	</form>
-</div>
+		</form>
+	</div>
 </div>
 
 <%@ include file="../include/footer.jsp"%>
