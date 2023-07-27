@@ -6,14 +6,14 @@
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-9 text-center mt-5">
-				<h1 class="heading" data-aos="fade-up">책 등록</h1>
+				<h1 class="heading" data-aos="fade-up">글 등록</h1>
 
 				<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
 					<ol class="breadcrumb text-center justify-content-center">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/book/list">대여 리스트</a></li>
+						<li class="breadcrumb-item"><a href="/board/list">글 리스트</a></li>
 						<li class="breadcrumb-item active text-white-50"
-							aria-current="page">책 등록</li>
+							aria-current="page">글 등록</li>
 					</ol>
 				</nav>
 			</div>
@@ -22,68 +22,41 @@
 </div>
 
 <div class="section">
-	<div class="container">
-		<form action="/book/insert" id="frm" method="post"
-			enctype="multipart/form-data">
-			<div class="form-group mt-2">
-				<label for="title">책제목</label> <input type="text"
-					class="form-control" id="title" placeholder="책 제목을 입력해주세요"
+	<div class="container mt-3">
+		<form action="/board/insert" method="post">
+			<div class="form-group mt-5">
+				<label for="title">제목</label> <input type="text"
+					class="form-control" id="title" placeholder="Enter title"
 					name="title">
+				<spring:hasBindErrors name="boardFormDTO">
+					<c:if test="${errors.hasFieldErrors('title') }">
+						<div class="alert alert-danger">${errors.getFieldError( 'title' ).defaultMessage }
+						</div>
+					</c:if>
+				</spring:hasBindErrors>
 			</div>
-			<spring:hasBindErrors name="bookFormDTO">
-				<c:if test="${errors.hasFieldErrors('title') }">
-					<div class="alert alert-danger">
-						<strong>${errors.getFieldError( 'title' ).defaultMessage }</strong>
-					</div>
-				</c:if>
-			</spring:hasBindErrors>
 			<div class="form-group mt-5">
-				<label for="author">저자</label> <input type="text"
-					class="form-control" id="author" name="author" placeholder="저자를 입력해주세요">
+				<label for="writer">작성자</label> <input type="text"
+					class="form-control" id="writer" placeholder="Enter writer"
+					name="writer" readonly="readonly" value="${principal.username }">
 			</div>
-			<spring:hasBindErrors name="bookFormDTO">
-				<c:if test="${errors.hasFieldErrors('author') }">
-					<div class="alert alert-danger">
-						<strong>${errors.getFieldError( 'author' ).defaultMessage }</strong>
-					</div>
-				</c:if>
-			</spring:hasBindErrors>
 
-			<div class="form-group mt-5">
-				<label for="category">카테고리</label> 
-				<select name='category' class="form-select">
-					<option value='취미'>취미</option>
-					<option value='경제경영'>경제경영</option>
-					<option value='고전'>고전</option>
-					<option value='만화'>만화</option>
-					<option value='소설'>소설</option>
-					<option value='어린이'>어린이</option>
-					<option value='여행'>여행</option>
-					<option value='기타'>기타</option>
-				</select>
-			</div>
 			
 			<div class="form-group mt-5">
 				<label for="content">내용</label>
-				<textarea class="form-control" rows="5" id="content" name="content"></textarea>
+				<textarea class="form-control" id="content" name="content" placeholder="Enter text"></textarea>
+				<spring:hasBindErrors name="boardFormDTO">
+					<c:if test="${errors.hasFieldErrors('content') }">
+						<div class="alert alert-danger">${errors.getFieldError( 'content' ).defaultMessage }
+						</div>
+					</c:if>
+				</spring:hasBindErrors>
 			</div>
-			<spring:hasBindErrors name="bookFormDTO">
-				<c:if test="${errors.hasFieldErrors('content') }">
-					<div class="alert alert-danger">
-						<strong>${errors.getFieldError( 'content' ).defaultMessage }</strong>
-					</div>
-				</c:if>
-			</spring:hasBindErrors>
-			
-			<div class="form-group mt-5">
-				<label for="upload">책이미지 파일</label> 
-				<input type="File"
-					class="btn-primary" id="upload" name="upload">
-			</div>			
-			
-			<div class="form-group mt-5">
+
+			<div class="form-group text-right mt-5">
 				<button type="submit" class="btn btn-primary" id="insertBtn">등록하기</button>
 			</div>
+
 		</form>
 	</div>
 </div>

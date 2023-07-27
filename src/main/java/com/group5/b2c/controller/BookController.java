@@ -70,6 +70,7 @@ public class BookController {
 		model.addAttribute("count",count);
 		model.addAttribute("p", page);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("location", location);
 		return "/book/booklist";
 	}
 	@GetMapping ("bookdetail/{num}")
