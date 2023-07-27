@@ -71,5 +71,10 @@ public class RentalService {
 	public List<Rental> overdueList(){
 		return rentalRepository.findByRentstatus("overdue");
 	}
+	public void removeRentalbookid(long bookid) {
+		Book book =bookRepository.findById(bookid).get();
+		Rental rental=rentalRepository.findByBookid(book);
+		rentalRepository.delete(rental);
+	}
 	
 }

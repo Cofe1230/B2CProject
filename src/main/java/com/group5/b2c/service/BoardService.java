@@ -29,9 +29,11 @@ public class BoardService {
     public List<Board> getAllBoards() {
         return boardRepository.findAll();
     }
-
+    @Transactional
     public Board getBoardById(Long id) {
-        return boardRepository.findById(id).orElse(null);
+    	Board board=boardRepository.findById(id).orElse(null);
+    	board.setHitcount(board.getHitcount()+1);
+        return board;
     }
 
     public void createBoard(Board board) {
@@ -50,7 +52,6 @@ public class BoardService {
     public void deleteBoard(Long id) {
         boardRepository.deleteById(id);
     }
-
     public List<Board> view(long num) {
         return boardRepository.findAll();
     }

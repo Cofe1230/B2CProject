@@ -33,23 +33,42 @@
 	</c:forEach>
 	<hr/>
 	<h2>대여중</h2>
+	<hr/>
 	<c:forEach items="${returnlist }" var="item">
 		<c:if test="${item.rentstatus=='rent' }">
+		<div class="row">
+		<div class="col-lg-4">
+		<strong>
 		대여번호 : ${item.rentalid }<br/>
 		책 이름 : ${item.bookid.title }<br/>
 		대여 날짜 : <fmt:formatDate value="${item.rentdate }" pattern="yyyy-MM-dd"/><br/>
 		반납 날짜 : <fmt:formatDate value="${item.returndate }" pattern="yyyy-MM-dd"/><br/>
+		</strong>
+		<hr/>
+		</div>
+		</div>
 		</c:if>
 	</c:forEach>
 	<hr/>
-	<h2>반납 완료</h2>
+	<hr/>
+	<h2>연체중</h2>
+	<hr/>
 	<c:forEach items="${returnlist }" var="item">
-		<c:if test="${item.rentstatus=='return' }">
-		책 이름 : ${item.bookid.title } 
-		대여 날짜 : <fmt:formatDate value="${item.rentdate }" pattern="yyyy-MM-dd"/> 
-		대여 유저 : ${item.rentid.username }<br/>
+		<c:if test="${item.rentstatus=='overdue' }">
+		<div class="row">
+		<div class="col-lg-4">
+		<strong>
+		대여번호 : ${item.rentalid }<br/>
+		책 이름 : ${item.bookid.title }<br/>
+		대여 날짜 : <fmt:formatDate value="${item.rentdate }" pattern="yyyy-MM-dd"/><br/>
+		반납 날짜 : <fmt:formatDate value="${item.returndate }" pattern="yyyy-MM-dd"/><br/>
+		</strong>
+		<hr/>
+		</div>
+		</div>
 		</c:if>
 	</c:forEach>
+	<hr/>
 </div>
 </div>
 

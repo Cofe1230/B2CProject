@@ -63,7 +63,7 @@
 					<c:if
 						test="${book.rentalid.rentstatus=='return' and principal.username==book.memberid.username }">
 						<div class="form-group">
-							<button type="button" class="btn btn-primary py-2 px-3 mt-2">재등록</button>
+							<button type="button" onclick="reinsert(${book.bookid})" class="btn btn-primary py-2 px-3 mt-2">재등록</button>
 							<button type="button" onclick="delBook(${book.bookid})" class="btn btn-primary py-2 px-3 mt-2">삭제</button>
 						</div>
 					</c:if>
@@ -80,6 +80,12 @@
 	</div>
 </div>
 <script>
+function reinsert(num){
+	if(!confirm('재등록 하겠습니까?')){
+		return false;
+	}
+	location.href="/book/reinsert/"+num;
+}
 function delBook(num){
 	if(!confirm('삭제 하겠습니까?')){
 		return false;

@@ -99,7 +99,7 @@
 			<div class="form-group mt-5">
 				<label for="address">주소 </label>&nbsp;
 				<button id="btnSearchAddressC" type="Button"
-					onclick="findDaumPostcode()" value="주소찾기" class="btn-primary">주소찾기</button>
+					onclick="findDaumPostcode()" value="주소찾기">주소찾기</button>
 				<input type="text" class="form-control" id="address"
 					placeholder="Enter address" name="address"
 					value="${member.address }" readonly="readonly">
@@ -114,8 +114,7 @@
 				</spring:hasBindErrors>
 			</div>
 			<div class="form-group mt-5">
-				<label for="location">지역</label> 
-				<select name='location' class="form-select">
+				<label for="location">지역 : </label> <select name='location'>
 					<option value='해운대구'>해운대구</option>
 					<option value='동래구'>동래구</option>
 					<option value='연제구'>연제구</option>

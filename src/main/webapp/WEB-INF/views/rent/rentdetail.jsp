@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="hero page-inner overlay"
 	style="background-image: url('/images/bg_main.png')">
 	<div class="container">
@@ -23,20 +23,53 @@
 </div>
 
 <div class="section">
-	<div class="container"> 
-	<!-- 책정보 :bookid 빌려준사람 정보 :rentid 빌린 사람 정보 :returnid -->
-	책이름 : ${rental.bookid.title }<br/>
-	빌려준 사람 : ${rental.rentid.username }<br/>
-	빌린 사람 : ${rental.returnid.username }<br/>
-	빌린 사람 주소 : ${rental.returnid.address }<br/>
-	대여 날짜 : <fmt:formatDate value="${rental.rentdate }" pattern="yyyy-MM-dd"/><br/>
-	반납 날짜 : <fmt:formatDate value="${rental.returndate }" pattern="yyyy-MM-dd"/><br/>
-	<c:if test="${rental.rentstatus=='request' }">
-	<button type="button" class="btn btn-primary btn-sm" onclick="rentrequest(${rental.rentalid})">대여수락</button>
-	</c:if>
-	<c:if test="${rental.rentid.username == principal.username and rental.rentstatus=='rent' }">
-	<button type="button" class="btn btn-primary btn-sm" onclick="returnBook(${rental.rentalid})">반납완료</button>
-	</c:if>
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-lg-7">
+				<div class="img-property-slide-wrap">
+					<div class="img-property-slide">
+						<img src="/resource/img/${rental.bookid.img }" alt="Image"
+							class="img-fluid" />
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<h2 class="heading text-primary">${rental.bookid.title }</h2>
+				<div class="d-block agent-box p-5">
+					<div class="text">
+						<h3 class="mb-0">등록 유저</h3><br/>
+						<h5 class="meta mb-0">id : ${rental.rentid.username }</h5>
+						<h5 class="meta mb-0">email : ${rental.rentid.email }</h5>
+						<h5 class="meta mb-0">주소 : ${rental.rentid.address }</h5>
+						<h5 class="meta mb-0">지역 : ${rental.rentid.location }</h5>
+					</div>
+				</div>
+				<div class="d-block agent-box p-5">
+					<div class="text">
+						<h3 class="mb-0">렌탈 유저</h3><br/>
+						<h5 class="meta mb-0">id : ${rental.returnid.username }</h5>
+						<h5 class="meta mb-0">email : ${rental.returnid.email }</h5>
+						<h5 class="meta mb-0">주소 : ${rental.returnid.address }</h5>
+						<h5 class="meta mb-0">지역 : ${rental.returnid.location }</h5>
+					</div>
+				</div><br>
+				<h3>대여 날짜 : <fmt:formatDate value="${rental.rentdate }" pattern="yyyy-MM-dd" />
+				<br /> 반납 날짜 :
+				<fmt:formatDate value="${rental.returndate }" pattern="yyyy-MM-dd" />
+				<br />
+				<br />
+				</h3>
+				<c:if test="${rental.rentstatus=='request' }">
+					<button type="button" class="btn btn-primary btn-sm"
+						onclick="rentrequest(${rental.rentalid})">대여수락</button>
+				</c:if>
+				<c:if
+					test="${rental.rentid.username == principal.username and rental.rentstatus=='rent' }">
+					<button type="button" class="btn btn-success py-3 px-4"
+						onclick="returnBook(${rental.rentalid})">반납완료</button>
+				</c:if>
+			</div>
+		</div>
 	</div>
 </div>
 <script>

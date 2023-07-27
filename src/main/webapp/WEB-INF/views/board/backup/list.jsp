@@ -22,10 +22,10 @@
 </div>
 
 <div class="section">
-	<div class="container mt-5">
+	<div class="container mt-3">
 		<h2>게시판</h2>
 
-		<table class="table table-hover mt-5">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -50,13 +50,11 @@
 		</table>
 		<br />
 		<form class="form-inline" action="/board/list" method="get">
-			<select name='field' class="form-select mr-sm-1">
+			<select name='field' class="form-control mr-sm-1">
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-			</select> 
-			</br>
-			<input type='text' name='word' class="form-control"
-				placeholder="Enter keyword"> <br />
+			</select> <input type='text' name='word' class="form-control"
+				placeholder="Search"> <br />
 			<button class='btn btn-secondary'>Search</button>
 
 			<div class="d-flex justify-content-between mt-3">

@@ -27,4 +27,17 @@ public class CommentService {
 		Board b = boardRepository.findById(comment.getBoard().getBoardid()).get();
 		b.setReplycnt(b.getReplycnt()+1);
 	}
+	
+	 @Transactional
+     public void delete(Comment comment) {
+         Board board = comment.getBoard();
+         if (board != null) {
+             List<Comment> comments = board.getComments();
+             comments.remove(comment);
+             board.setReplycnt((long) comments.size());
+             boardRepository.save(board); // 게시물의 댓글 개수 업데이트
+         }
+         commentRepository.delete(comment);
+     }
+
 }

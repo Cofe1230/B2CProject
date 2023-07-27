@@ -26,7 +26,7 @@
 		<form action="/book/insert" id="frm" method="post"
 			enctype="multipart/form-data">
 			<div class="form-group mt-2">
-				<label for="title">책제목</label> <input type="text"
+				<label for="title">책제목 : </label> <input type="text"
 					class="form-control" id="title" placeholder="책 제목을 입력해주세요"
 					name="title">
 			</div>
@@ -38,7 +38,7 @@
 				</c:if>
 			</spring:hasBindErrors>
 			<div class="form-group mt-5">
-				<label for="author">저자</label> <input type="text"
+				<label for="author">저자 : </label> <input type="text"
 					class="form-control" id="author" name="author" placeholder="저자를 입력해주세요">
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
@@ -50,21 +50,19 @@
 			</spring:hasBindErrors>
 
 			<div class="form-group mt-5">
-				<label for="category">카테고리</label> 
-				<select name='category' class="form-select">
-					<option value='취미'>취미</option>
+				<label for="category">카테고리 : </label> <select name='category'>
+					<option value='취미	'>취미</option>
 					<option value='경제경영'>경제경영</option>
 					<option value='고전'>고전</option>
 					<option value='만화'>만화</option>
 					<option value='소설'>소설</option>
 					<option value='어린이'>어린이</option>
 					<option value='여행'>여행</option>
-					<option value='기타'>기타</option>
 				</select>
 			</div>
 			
 			<div class="form-group mt-5">
-				<label for="content">내용</label>
+				<label for="content">내용:</label>
 				<textarea class="form-control" rows="5" id="content" name="content"></textarea>
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
@@ -75,14 +73,12 @@
 				</c:if>
 			</spring:hasBindErrors>
 			
-			<div class="form-group mt-5">
-				<label for="upload">책이미지 파일</label> 
-				<input type="File"
-					class="btn-primary" id="upload" name="upload">
-			</div>			
-			
-			<div class="form-group mt-5">
-				<button type="submit" class="btn btn-primary" id="insertBtn">등록하기</button>
+			<div class="form-group mt-2">
+				<label for="upload">파일:</label> <input type="File"
+					class="form-control" id="upload" name="upload">
+			</div>
+			<div class="form-group mt-2">
+			<button type="submit" class="btn btn-dark py-2 px-3" id="insertBtn">등록하기</button>
 			</div>
 		</form>
 	</div>

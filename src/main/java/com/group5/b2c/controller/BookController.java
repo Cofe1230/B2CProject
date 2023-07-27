@@ -101,4 +101,10 @@ public class BookController {
 		bookService.update(book, uploadFolder,bookid);
 		return "redirect:/book/list";
 	}
+	@GetMapping("reinsert/{num}")
+	public String reinsert(@PathVariable long num) {
+		System.out.println(num);
+		rentalService.removeRentalbookid(num);
+		return "redirect:/";
+	}
 }

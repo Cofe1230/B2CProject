@@ -50,7 +50,7 @@ public class Book {//대여 책 관련 정보
 	private Rental rentalid;
 	@ManyToOne(fetch = FetchType.LAZY) //대여 글 등록한 사람
 	@JoinColumn(name = "memberid")
-	private Member memberid; 
+	private Member memberid;
 	
 	public static Book createBook(BookFormDTO bookFormDTO,Member member) {
 		Book book = new Book();

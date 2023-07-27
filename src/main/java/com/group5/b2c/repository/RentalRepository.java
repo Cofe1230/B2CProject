@@ -13,7 +13,7 @@ import com.group5.b2c.model.Rental;
 
 public interface RentalRepository extends JpaRepository<Rental, Long> {
 	@Modifying
-	@Query(value = "update rental set rentdate=now(), returndate=date_add(now(), interval 14 DAY) where rentalid=?1", nativeQuery = true)
+	@Query(value = "update rental set rentdate=now(), returndate=now() where rentalid=?1", nativeQuery = true)
 	public void update(long num);
 	
 	public List<Rental> findByReturnid(Member member);
