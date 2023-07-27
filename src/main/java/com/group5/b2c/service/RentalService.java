@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -57,18 +58,18 @@ public class RentalService {
 	public List<Rental> returnlist(Member member) {
 		return rentalRepository.findByReturnid(member);
 	}
+	
 	@Transactional
 	public void returnbook(long num) {
 		Rental rental = rentalRepository.findById(num).get();
 		rental.setRentstatus("return");
 	}
-	//자정에 대여미납
-	@Transactional
-	@Scheduled(cron = "0 0 0 * * ?")
-	public void test() {
-		List<Rental> list = rentalRepository.findAllByReturndateBeforeAndRentstatus(new Date(),"rent");
-		for(Rental rental : list) {
-			rental.setRentstatus("overdue");
-		}
+	
+	public long getOverdueCount() {
+		return rentalRepository.countByRentstatus("overdue");
 	}
+	public List<Rental> overdueList(){
+		return rentalRepository.findByRentstatus("overdue");
+	}
+	
 }

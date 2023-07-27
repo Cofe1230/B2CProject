@@ -3,6 +3,7 @@ package com.group5.b2c.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Book {//대여 책 관련 정보
 	private Date uploaddate;
 	@Transient
 	private MultipartFile upload;
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bookid")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bookid",cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private Rental rentalid;
 	@ManyToOne(fetch = FetchType.LAZY) //대여 글 등록한 사람

@@ -83,6 +83,13 @@
 							<li><a href="/member/join">회원가입</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<li class="has-children"><a href="/admin/memberlist">관리페이지</a>
+								<ul class="dropdown">
+									<li><a href="/admin/memberlist">회원리스트</a></li>
+									<li><a href="/admin/overduelist">미납리스트</a></li>
+								</ul></li>
+							</sec:authorize>
 							<li class="has-children"><a href="/member/memberview/${principal.member.username }">마이페이지</a>
 								<ul class="dropdown">
 									<li><a href="/member/memberview/${principal.member.username }">회원정보</a></li>

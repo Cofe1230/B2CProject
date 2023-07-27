@@ -24,32 +24,30 @@
 <div class="section">
 	<div class="container">
 	
-	<h3>Member List (${count})</h3>
+	<h3>미납 리스트 (${count})</h3>
 	<table class="table table-hover">
 		<thead>
 			<tr>
+				<th>대여번호</th>
 				<th>아이디</th>
-				<th>이름</th>
 				<th>이메일</th>
-				<th>전화번호</th>
-				<th>주소</th>
+				<th>반납날짜</th>
+				<th>반납상태</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${member }" var="member" varStatus="st">
+			<c:forEach items="${rental }" var="item" varStatus="st">
 				<tr>
-					<td><a href="/member/memberview/${member.userid}">${member.username}</a></td>
-					<td>${member.name }
-					<td>${member.email}</td>
-					<td>${member.phone}</td>
-					<td>${member.address}</td>
+					<td>${item.rentalid}</td>
+					<td>${item.rentid.username }
+					<td>${item.rentid.email}</td>
+					<td>${item.returndate}</td>
+					<td>${item.rentstatus}</td>
 
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-
-
 	</div>
 </div>
 

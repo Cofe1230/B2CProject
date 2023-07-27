@@ -18,9 +18,5 @@ public class HomeController {
 		return "home";
 	}
 	
-	@GetMapping("/test")
-	public String test() {
-		rentalService.test();
-		return "home";
-	}
+	
 }

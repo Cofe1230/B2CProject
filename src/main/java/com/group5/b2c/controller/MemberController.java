@@ -62,12 +62,6 @@ public class MemberController {
 		return "/member/login";
 	}
 	
-	@GetMapping("/member/memberlist")
-	public String list(Model model) {
-		model.addAttribute("count",memberService.getCount());
-		model.addAttribute("member",memberService.list());
-		return "/member/memberlist"; 
-	}
 	@GetMapping("/member/memberview/{username}")
 	public String view(@PathVariable String username, Model model) {		
 		Member member = memberService.view(username);

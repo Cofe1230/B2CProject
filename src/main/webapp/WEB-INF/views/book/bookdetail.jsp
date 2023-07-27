@@ -64,7 +64,7 @@
 						test="${book.rentalid.rentstatus=='return' and principal.username==book.memberid.username }">
 						<div class="form-group">
 							<button type="button" class="btn btn-primary py-2 px-3 mt-2">재등록</button>
-							<button type="button" class="btn btn-primary py-2 px-3 mt-2">삭제</button>
+							<button type="button" onclick="delBook(${book.bookid})" class="btn btn-primary py-2 px-3 mt-2">삭제</button>
 						</div>
 					</c:if>
 				</sec:authorize>
