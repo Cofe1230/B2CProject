@@ -7,14 +7,14 @@
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-9 text-center mt-5">
-				<h1 class="heading" data-aos="fade-up">책 등록</h1>
+				<h1 class="heading" data-aos="fade-up">글 상세보기</h1>
 
 				<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
 					<ol class="breadcrumb text-center justify-content-center">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/book/list">대여 리스트</a></li>
+						<li class="breadcrumb-item"><a href="/board/list">글 목록</a></li>
 						<li class="breadcrumb-item active text-white-50"
-							aria-current="page">책 등록</li>
+							aria-current="page">글 상세보기</li>
 					</ol>
 				</nav>
 			</div>
@@ -26,6 +26,7 @@
 	<div class="container">
 		<input type="hidden" name="boardid" value="${board.boardid }">
 		<h2>상세 보기</h2>
+		<br/>
 		<table class="table table-hover">
 			<tr>
 				<td>글번호</td>
@@ -51,17 +52,16 @@
 		</table>
 		<br>
 		<c:if test="${principal.username==board.member.username }">
-			<div class="form-group text-right">
+			<div class="form-group text-right mt-3">
 				<button class="btn btn-primary" id="btnUpdate">수정</button>
 				<button class="btn btn-secondary" id="btnDelete">삭제</button>
 			</div>
 		</c:if>
-		<div class="form-group">
-			<label for="msg">msg</label>
+		<div class="form-group mt-5">
+			<label for="msg">댓글 내용</label>
 			<textarea class="form-control" rows="3" cols="50" id="msg"></textarea>
 			<br>
-			<button class="btn btn-success btn-sm" id="commentBtn">Comment
-				Write</button>
+			<button class="btn btn-success btn-sm" id="commentBtn">댓글쓰기</button>
 			<hr />
 			<div id="replyResult"></div>
 		</div>

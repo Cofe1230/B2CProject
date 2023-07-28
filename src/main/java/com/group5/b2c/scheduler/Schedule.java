@@ -22,7 +22,7 @@ public class Schedule {
 	@Transactional
 	@Scheduled(cron = "0 0 0 * * ?")
     public void testSchedule() {
-		System.out.println("스케쥴 작업중");
+		System.out.println("scheduler active");
 		List<Rental> list = rentalRepository.findAllByReturndateBeforeAndRentstatus(new Date(),"rent");
 		for(Rental rental : list) {
 			rental.setRentstatus("overdue");

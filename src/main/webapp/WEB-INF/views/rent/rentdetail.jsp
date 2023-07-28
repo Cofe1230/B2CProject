@@ -64,7 +64,7 @@
 						onclick="rentrequest(${rental.rentalid})">대여수락</button>
 				</c:if>
 				<c:if
-					test="${rental.rentid.username == principal.username and rental.rentstatus=='rent' }">
+					test="${rental.rentid.username == principal.username and rental.rentstatus=='rent' or rental.rentstatus=='overdue' }">
 					<button type="button" class="btn btn-success py-3 px-4"
 						onclick="returnBook(${rental.rentalid})">반납완료</button>
 				</c:if>

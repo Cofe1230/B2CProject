@@ -13,7 +13,7 @@
 					<ol class="breadcrumb text-center justify-content-center">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
 						<li class="breadcrumb-item active text-white-50"
-							aria-current="page">글 리스트</li>
+							aria-current="page">글 목록</li>
 					</ol>
 				</nav>
 			</div>
@@ -23,7 +23,7 @@
 
 <div class="section">
 	<div class="container mt-5">
-		<h2>게시판</h2>
+		<h2>글 목록</h2>
 
 		<table class="table table-hover mt-5">
 			<thead>
@@ -49,28 +49,19 @@
 			</tbody>
 		</table>
 		<br />
+		<form action="/board/insert">
+			<button type="submit" id="insertBtn" class="btn btn-primary">등록하기</button>
+		</form>
+<br />
 		<form class="form-inline" action="/board/list" method="get">
+
 			<select name='field' class="form-select mr-sm-1">
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-			</select> 
-			</br>
-			<input type='text' name='word' class="form-control"
+			</select> </br> <input type='text' name='word' class="form-control"
 				placeholder="Enter keyword"> <br />
-			<button class='btn btn-secondary'>Search</button>
+			<button class='btn btn-secondary'>검색</button>
 
-			<div class="d-flex justify-content-between mt-3">
-				<ul class="pagination">
-					<c:if test="${currentPage > 1}">
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="goToPage(${currentPage - 1})"> 이전 </a></li>
-					</c:if>
-					<c:if test="${currentPage < totalPages}">
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="goToPage(${currentPage + 1})"> 다음 </a></li>
-					</c:if>
-				</ul>
-			</div>
 		</form>
 	</div>
 </div>

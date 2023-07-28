@@ -49,7 +49,7 @@ public class BoardController {
         return "/board/view";
     }
 
-    @GetMapping("delete/{num}")
+    @DeleteMapping("delete/{num}")
     @ResponseBody
     public String delete(@PathVariable long num) {
         boardService.deleteBoard(num);

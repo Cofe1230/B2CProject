@@ -45,7 +45,7 @@
   <h2>대여 중</h2>
  	<div class="row">
 	  <c:forEach items="${lists }" var="item">
-	  	<c:if test="${item.rentalid.rentstatus == 'rent' }">
+	  	<c:if test="${item.rentalid.rentstatus == 'rent' or item.rentalid.rentstatus == 'overdue' }">
 		  <div class="card col-lg-3" > <!-- col-4 4개의 칼럼이 나타남 -->
 		  	<a href="/rent/rentdetail/${item.rentalid.rentalid}">
 			    <img class="card-img-top" src="/resource/img/${item.img }" alt="Card image" style="width:100px;height:100px">

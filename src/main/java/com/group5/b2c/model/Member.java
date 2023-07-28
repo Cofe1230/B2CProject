@@ -47,7 +47,7 @@ public class Member {
 		member.setEmail(memberDTO.getEmail());
 		member.setPhone(memberDTO.getPhone());
 		member.setLocation(memberDTO.getLocation());
-		member.setRole("ROLE_ADMIN");
+		member.setRole("ROLE_USER");
 		return member;
 	}
 }

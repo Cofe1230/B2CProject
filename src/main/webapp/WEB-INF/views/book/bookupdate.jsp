@@ -26,9 +26,9 @@
 		<form action="/book/bookupdate" id="frm" method="post"
 			enctype="multipart/form-data">
 			<div class="form-group mt-2">
-			<input type="hidden" name="bookid" value="${book.bookid }">
-				<label for="title">책제목 : </label> <input type="text"
-					class="form-control" id="title" placeholder="책 제목을 입력해주세요"
+				<input type="hidden" name="bookid" value="${book.bookid }">
+				<label for="title">책제목</label> <input type="text"
+					class="form-control" id="title" placeholder="Enter title"
 					name="title" value="${book.title }">
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
@@ -39,8 +39,9 @@
 				</c:if>
 			</spring:hasBindErrors>
 			<div class="form-group mt-5">
-				<label for="author">저자 : </label> <input type="text"
-					class="form-control" id="author" name="author" placeholder="저자를 입력해주세요" value="${book.author }">
+				<label for="author">저자</label> <input type="text"
+					class="form-control" id="author" name="author"
+					placeholder="Enter author" value="${book.author }">
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
 				<c:if test="${errors.hasFieldErrors('author') }">
@@ -51,14 +52,21 @@
 			</spring:hasBindErrors>
 
 			<div class="form-group mt-5">
-				<label for="category">카테고리 : </label> <select name='category' id='category'>
-					<option value='국내도서'>국내도서</option>
-					<option value='해외도서'>해외도서</option>
+				<label for="category">카테고리</label> <select name='category'
+					class="form-select">
+					<option value='취미	'>취미</option>
+					<option value='경제경영'>경제경영</option>
+					<option value='고전'>고전</option>
+					<option value='만화'>만화</option>
+					<option value='소설'>소설</option>
+					<option value='어린이'>어린이</option>
+					<option value='여행'>여행</option>
+					<option value='기타'>기타</option>
 				</select>
 			</div>
 
 			<div class="form-group mt-5">
-				<label for="content">내용:</label>
+				<label for="content">내용</label>
 				<textarea class="form-control" rows="5" id="content" name="content">${book.content }</textarea>
 			</div>
 			<spring:hasBindErrors name="bookFormDTO">
@@ -68,22 +76,24 @@
 					</div>
 				</c:if>
 			</spring:hasBindErrors>
-			
+
 			<div class="form-group mt-2">
-				<label for="upload">파일:</label> <input type="File"
+				<label for="upload">파일</label> 
+				<input type="File"
 					class="form-control" id="upload" name="upload">
 			</div>
 			<div class="form-group mt-2">
-			<button type="submit" class="btn btn-dark py-2 px-3" id="updateBtn">수정하기</button>
+				<button type="submit" class="btn btn-primary" id="updateBtn">수정하기</button>
 			</div>
+
 		</form>
 	</div>
 </div>
 <script>
-$('#category option').each(function(){
-	if($(this).val()=='${book.category}'){
-		$(this).prop("selected",true);
-	}
-})
+	$('#category option').each(function() {
+		if ($(this).val() == '${book.category}') {
+			$(this).prop("selected", true);
+		}
+	})
 </script>
 <%@ include file="../include/footer.jsp"%>

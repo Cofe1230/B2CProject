@@ -89,7 +89,7 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "/member/memberview";
         }
-		return "/member/memberview";
+		return "redirect:/member/logout";
 	}
 
 

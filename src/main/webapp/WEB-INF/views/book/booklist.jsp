@@ -51,7 +51,7 @@
 								<div class="price mb-2">
 									<c:if test="${empty item.rentalid }">
 										<span>대여 가능</span>
-										<span class="mylist"><c:if test="${item.memberid.username==principal.username }">-내글</c:if>
+										<span class="mylist"><c:if test="${item.memberid.username==principal.username }"> - 내글</c:if>
 										</span>
 									</c:if>
 									<c:if test="${!empty item.rentalid }">

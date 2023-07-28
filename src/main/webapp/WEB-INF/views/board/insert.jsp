@@ -11,7 +11,7 @@
 				<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
 					<ol class="breadcrumb text-center justify-content-center">
 						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/board/list">글 리스트</a></li>
+						<li class="breadcrumb-item"><a href="/board/list">글 목록</a></li>
 						<li class="breadcrumb-item active text-white-50"
 							aria-current="page">글 등록</li>
 					</ol>
@@ -23,6 +23,9 @@
 
 <div class="section">
 	<div class="container mt-3">
+
+		<h2>글 등록</h2>
+		<br />
 		<form action="/board/insert" method="post">
 			<div class="form-group mt-5">
 				<label for="title">제목</label> <input type="text"
@@ -36,15 +39,17 @@
 				</spring:hasBindErrors>
 			</div>
 			<div class="form-group mt-5">
-				<label for="writer">작성자</label> <input type="text"
+				<label for="writer">작성자</label> 
+				<input type="text"
 					class="form-control" id="writer" placeholder="Enter writer"
 					name="writer" readonly="readonly" value="${principal.username }">
 			</div>
 
-			
+
 			<div class="form-group mt-5">
 				<label for="content">내용</label>
-				<textarea class="form-control" id="content" name="content" placeholder="Enter text"></textarea>
+				<textarea class="form-control" id="content" name="content"
+					placeholder="Enter text"></textarea>
 				<spring:hasBindErrors name="boardFormDTO">
 					<c:if test="${errors.hasFieldErrors('content') }">
 						<div class="alert alert-danger">${errors.getFieldError( 'content' ).defaultMessage }

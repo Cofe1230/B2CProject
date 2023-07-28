@@ -3,14 +3,14 @@
 <%@ include file="../include/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <br/><br/><br/><br/><br/>
-<div class="container mt-3">
-	<h3>${board.member.username }의글보기</h3>
-	<div class="form-group">
-		<label for="num">글번호:</label> <input type="text" class="form-control"
+<div class="container mt-5">
+	<h3>글 수정하기</h3>
+	<div class="form-group mt-5">
+		<label for="num">글 번호</label> <input type="text" class="form-control"
 			id="num" name="num" value="${board.boardid }" readonly="readonly">
 	</div>
-	<div class="form-group">
-		<label for="title">제목:</label> <input type="text" class="form-control"
+	<div class="form-group mt-5">
+		<label for="title">제목</label> <input type="text" class="form-control"
 			id="title" name="title" value="${board.title }">
 	</div>
 	<spring:hasBindErrors name="boardFormDTO">
@@ -20,16 +20,15 @@
 			</div>
 		</c:if>
 	</spring:hasBindErrors>
-	<div class="form-group">
-		<label for="writer">작성자:</label> <input type="text" class="form-control"
+	<div class="form-group mt-5">
+		<label for="writer">작성자</label> <input type="text" class="form-control"
 			id="writer" name="writer" value="${board.member.username }"
 			readonly="readonly">
 	</div>
 	<br/>
-	<div class="form-group">
+	<div class="form-group mt-5">
 		<label for="content">내용</label>
-		<textarea class="form-control" rows="5" id="content" name="content">
-		${board.content }</textarea>
+		<textarea class="form-control" rows="5" id="content" name="content">${board.content }</textarea>
 	</div>
 	<br/>
 	<spring:hasBindErrors name="boardFormDTO">
@@ -40,7 +39,7 @@
 		</c:if>
 	</spring:hasBindErrors>
 	<br/>
-		<div class="form-group text-right">
+		<div class="form-group text-right mt-3">
 			<button type="button" class="btn btn-secondary btn-sm" id="btnUpdate">수정</button>
 			<button type="button" class="btn btn-danger btn-sm" id="btnDelete">삭제</button>
 		</div>
